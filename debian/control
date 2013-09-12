@@ -1,0 +1,73 @@
+Source: rubinius
+Section: universe/ruby
+Priority: optional
+Maintainer: Matt Whiteley <mwhiteley@engineyard.com>
+Build-Depends: debhelper (>= 9.0.0), bison, llvm-3.1-dev, rake
+Standards-Version: 3.9.4
+Homepage: http://rubini.us/
+#Vcs-Git: git://git.debian.org/collab-maint/rubinius.git
+#Vcs-Browser: http://git.debian.org/?p=collab-maint/rubinius.git;a=summary
+Vcs-Git: git://github.com/whiteley/rubinius-deb.git
+Vcs-Browser: https://github.com/whiteley/rubinius-deb
+
+Package: rubinius
+Architecture: any
+Depends: ${misc:Depends}, rubinius-19 (= ${binary:Version}) | rubinius-20 (= ${binary:Version}) | rubinius-18 (= ${binary:Version}), rubinius-common (= ${binary:Version})
+Description: Rubinius metapackage
+ Rubinius includes a bytecode virtual machine, parser, bytecode compiler,
+ garbage collector, and just-in-time (JIT) native machine code compiler. The
+ Ruby core library is written almost entirely in Ruby. Rubinius provides the
+ same standard libraries as Matz's Ruby implementation (MRI). Rubinius also
+ provides C-API compatibility for native C extensions.
+
+Package: rubinius-common
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: <insert up to 60 chars description>
+ Rubinius includes a bytecode virtual machine, parser, bytecode compiler,
+ garbage collector, and just-in-time (JIT) native machine code compiler. The
+ Ruby core library is written almost entirely in Ruby. Rubinius provides the
+ same standard libraries as Matz's Ruby implementation (MRI). Rubinius also
+ provides C-API compatibility for native C extensions.
+
+Package: rubinius-18
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: rubinius in language mode 1.8
+ Rubinius includes a bytecode virtual machine, parser, bytecode compiler,
+ garbage collector, and just-in-time (JIT) native machine code compiler. The
+ Ruby core library is written almost entirely in Ruby. Rubinius provides the
+ same standard libraries as Matz's Ruby implementation (MRI). Rubinius also
+ provides C-API compatibility for native C extensions.
+ .
+ This package contains Rubinius compiled for version 1.8 of the Ruby language.
+
+Package: rubinius-19
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: rubinius in language mode 1.9
+ Rubinius includes a bytecode virtual machine, parser, bytecode compiler,
+ garbage collector, and just-in-time (JIT) native machine code compiler. The
+ Ruby core library is written almost entirely in Ruby. Rubinius provides the
+ same standard libraries as Matz's Ruby implementation (MRI). Rubinius also
+ provides C-API compatibility for native C extensions.
+ .
+ This package contains Rubinius compiled for version 1.9 of the Ruby language.
+
+Package: rubinius-20
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: rubinius in language mode 2.0
+ Rubinius includes a bytecode virtual machine, parser, bytecode compiler,
+ garbage collector, and just-in-time (JIT) native machine code compiler. The
+ Ruby core library is written almost entirely in Ruby. Rubinius provides the
+ same standard libraries as Matz's Ruby implementation (MRI). Rubinius also
+ provides C-API compatibility for native C extensions.
+ .
+ This package contains Rubinius compiled for version 2.0 of the Ruby language.
+
+Package: rubinius-doc
+Architecture: all
+Description: documentation for rubinius
+ This package provides the documentation for Rubinius. For more details
+ see the rubinius package description.

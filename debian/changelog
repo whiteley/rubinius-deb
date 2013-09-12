@@ -1,0 +1,5 @@
+rubinius (1.2.4+2.0.0rc1-0mwhiteley1-1) precise; urgency=low
+
+  * Initial release (Closes: #nnnn)
+
+ -- Matt Whiteley <mwhiteley@engineyard.com>  Thu, 12 Sep 2013 12:31:32 -0700
