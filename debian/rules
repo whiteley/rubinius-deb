@@ -16,6 +16,12 @@ MODES=19 20 18
 # llvm 3.1 must be used until the fix for this bug is released
 # https://bugs.launchpad.net/ubuntu/+source/llvm-3.2/+bug/1179780
 RBX_COMMON_CONFARGS = --prefix=/usr \
+											--preserve-prefix \
+											--libdir=/usr/lib/rubinius/lib \
+											--appdir=/usr/lib/rubinius \
+											--mandir=/usr/share/man \
+											--gemsdir=/var/lib/gems \
+											--includedir=/usr/include/rubinius \
 											--llvm-config=/usr/bin/llvm-config-3.1 \
 											--skip-prebuilt
 
@@ -34,24 +40,12 @@ endif
 
 mode-build-%:
 	mkdir "$(BUILD_DIR)/$*"
+	mkdir "$(INSTALL_DIR)/$*"
 	cp -a `find . -maxdepth 1 -mindepth 1 -not -name debian` $(BUILD_DIR)/$*
 	cd $(BUILD_DIR)/$* && ./configure \
 		$(RBX_COMMON_CONFARGS) $(RBX_$(*)_CONFARGS) $(CONFFLAGS)
-	# something similar to one of these options will have to work to install
-	# rubinius to debian/install-tree/19/usr with it compiled to run from /usr
-	# 1- cd $(BUILD_DIR)/$* && rake build
-	# 1- cd $(BUILD_DIR)/$* && rake install --destdir="$(INSTALL_DIR)/$*"
-	# 2- rake -f $(BUILD_DIR)/$*/Rakefile build
-	# 2- rake -f $(BUILD_DIR)/$*/Rakefile install --destdir="$(INSTALL_DIR)/$*"
-	#
-	# build results and precompiled gems
-	#   /usr/bin/rbx
-	#   /usr/lib/rubinius/[gems,kernel,lib,runtime]
-	#   /usr/lib/rubinius/lib/ruby/[1.8,1.9,2.0]
-	#   /usr/share/man/man1/rbx.1
-	#
-	# user installed gems
-	#   /var/lib/gems/[1.8,1.9.1,2.0]/gems
+	cd $(BUILD_DIR)/$* && rake build
+	cp -a $(BUILD_DIR)/$*/staging/* $(INSTALL_DIR)/$*
 
 override_dh_auto_clean:
 	rm -rf $(BUILD_DIR)
